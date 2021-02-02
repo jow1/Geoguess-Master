@@ -3,6 +3,7 @@
     <HeaderGame
       :score="state.scoreHeader"
       :round="state.round"
+      :numberOfRounds="state.numberOfRounds"
       :remainingTime="state.remainingTime"
     />
     <div class="street-view-wrapper">
@@ -35,6 +36,7 @@
           :playerNumber="playerNumber"
           :isReady="state.isReady"
           :round="state.round"
+          :numberOfRounds="state.numberOfRounds"
           :score="state.score"
           @calculateDistance="updateScore"
           @showResult="showResult"
@@ -100,6 +102,7 @@ export default defineComponent({
       scoreHeader: number;
       round: number;
       timeLimitation: number;
+      numberOfRounds: number;
       remainingTime: number;
       hasTimerStarted: boolean;
       hasLocationSelected: boolean;
@@ -117,6 +120,7 @@ export default defineComponent({
       score: 0,
       scoreHeader: 0,
       round: 1,
+      numberOfRounds: 0,
       timeLimitation: 0,
       remainingTime: 0,
       hasTimerStarted: false,
@@ -287,6 +291,7 @@ export default defineComponent({
         state.room!.on('value', (snapshot) => {
           // Check if the room is already removed
           if (snapshot.hasChild('active')) {
+              state.numberOfRounds = snapshot.child('numberOfRounds').val()
             // Put the player into the current round node if the player is not put yet
             if (!snapshot.child('round' + state.round).hasChild('player' + props.playerNumber)) {
               state.room!.child('round' + state.round).child('player' + props.playerNumber).set(0)

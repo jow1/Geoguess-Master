@@ -99,6 +99,10 @@ export default defineComponent({
       type: Number,
       required: true,
     },
+    numberOfRounds: {
+      type: Number,
+      required: true,
+    },
     score: {
       type: Number,
       required: true,
@@ -307,7 +311,7 @@ export default defineComponent({
             putMarker(props!.randomLatLng!)
             // Remove guess node every time the round is done
             state.room!.child('guess').remove()
-            if (props.round >= 5) {
+            if (props.round >= props.numberOfRounds) {
               // Show summary button
               snapshot.child('finalScore').forEach((childSnapshot) => {
                 let playerName = snapshot.child('playerName').child(childSnapshot!.key!).val()

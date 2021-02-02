@@ -9,6 +9,7 @@
       @searchRoom="searchRoom"
       @setRoomSize="setRoomSize"
       @setTimeLimitation="setTimeLimitation"
+      @setRoomRounds="setRoomRounds"
       @setPlayerName="setPlayerName"
       @cancel="cancel" 
     />
@@ -24,6 +25,7 @@ import 'firebase/database'
 import CardRoomName from '@/components/widgets/card/CardRoomName.vue'
 import CardRoomSize from '@/components/widgets/card/CardRoomSize.vue'
 import CardRoomTime from '@/components/widgets/card/CardRoomTime.vue'
+import CardRoomRounds from '@/components/widgets/card/CardRoomRounds.vue'
 import CardRoomPlayerName from '@/components/widgets/card/CardRoomPlayerName.vue'
 
 export default defineComponent({
@@ -38,6 +40,7 @@ export default defineComponent({
     'roomName': CardRoomName,
     'roomSize': CardRoomSize,
     'timeLimitation': CardRoomTime,
+    'numberOfRounds': CardRoomRounds,
     'playerName': CardRoomPlayerName,
   },
 
@@ -99,6 +102,16 @@ export default defineComponent({
         size: roomSize
       }, (error) => {
         if (!error) {
+          state.currentComponent = 'numberOfRounds'
+        }
+      })
+    }
+
+    function setRoomRounds(numberOfRounds: number): void {
+      state.room!.update({
+        numberOfRounds: numberOfRounds
+      }, (error) => {
+        if (!error) {
           state.currentComponent = 'timeLimitation'
         }
       })
@@ -151,6 +164,7 @@ export default defineComponent({
       searchRoom,
       setRoomSize,
       setTimeLimitation,
+      setRoomRounds,
       setPlayerName,
       cancel,
     }

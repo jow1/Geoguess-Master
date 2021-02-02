@@ -12,7 +12,7 @@
       <span class="sub-text">ROUND: </span>
     </div>
     <div>
-      <span class="main-text">{{ round }} / 5</span>
+      <span class="main-text">{{ round }} / {{numberOfRounds}}</span>
     </div>
     <div class="round-score-wrapper">
       <span class="sub-text">SCORE: </span>
@@ -34,6 +34,10 @@ export default defineComponent({
       required: true,
     },
     round: {
+      type: Number,
+      required: true,
+    },
+    numberOfRounds: {
       type: Number,
       required: true,
     },
