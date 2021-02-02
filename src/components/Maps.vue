@@ -38,14 +38,14 @@
     </button>
     <button
       id="next-button"
-      v-if="state.isGuessButtonClicked && round < 5"
+      v-if="state.isGuessButtonClicked && round < 3"
       @click="goToNextRound"
     >
       NEXT ROUND
     </button>
     <button
       id="summary-button"
-      v-if="state.isGuessButtonClicked && round >= 5"
+      v-if="state.isGuessButtonClicked && round >= 3"
       @click="state.dialogSummary = true"
     >
       VIEW SUMMARY
