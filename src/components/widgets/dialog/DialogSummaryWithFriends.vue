@@ -20,6 +20,13 @@
             <strong :style="{ 'margin-left': index !== 0 ? '24px' : 'none' }">{{ text.playerName }}</strong> is <strong>{{ text.finalScore }}</strong> km away!
           </span>
         </v-row>
+        <v-row
+          class="mt-3"
+          justify="center">
+          <span id="summary-text">
+             <strong :style="{ 'margin-left': index !== 0 ? '24px' : 'none' }">Average: {{ calculateAverange() }} km</strong>
+          </span>
+        </v-row>
         <v-row justify="center">
           <v-btn
             id="exit-button"
@@ -84,6 +91,18 @@ export default defineComponent({
       }
     }
 
+    function calculateAverange(): Number {
+      let sum = 0
+
+      let numberOfPlayers = props.summary.length
+
+      props.summary.forEach(summary => {
+        sum += summary.finalScore
+      })
+
+      return sum / numberOfPlayers
+    }
+
     function finishGame(): void {
       context.emit('finishGame')
     }
@@ -98,6 +117,7 @@ export default defineComponent({
     )
 
     return {
+      calculateAverange,
       finishGame,
     }
   }

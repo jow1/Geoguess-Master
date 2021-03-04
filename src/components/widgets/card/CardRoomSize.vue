@@ -75,7 +75,11 @@ export default defineComponent({
         {
           text: '8',
           value: 8,
-        },               
+        }, 
+        {
+          text: '9',
+          value: 9,
+        },                
       ]
     })
 
