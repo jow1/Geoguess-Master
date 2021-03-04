@@ -184,9 +184,9 @@ export default defineComponent({
     }
 
     function selectGivenLocation(randomLatLng: google.maps.LatLng): void {
-      if (state.selectedLatLng == null) {
-      	state.selectedLatLng = randomLatLng
-      }
+    if (state.selectedLatLng == null) {
+      state.selectedLatLng = randomLatLng
+    }
       removeMarkers()
       putMarker(state.selectedLatLng!)
       selectLocation()
