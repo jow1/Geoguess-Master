@@ -205,14 +205,14 @@ export default defineComponent({
     function mouseOverMap(): void {
       if (viewport.width > 450) {
         document.getElementById('map')!.style.opacity = '1.0'
-        document.getElementById('map')!.style.transform = 'scale(1)'
+        document.getElementById('map')!.style.transform = 'scale(1.0)'
       }
     }
 
     function mouseOutMap(): void {
       if (!state.isSelected && viewport.width > 450) {
         document.getElementById('map')!.style.opacity = '0.7'
-        document.getElementById('map')!.style.transform = 'scale(0.75)'
+        document.getElementById('map')!.style.transform = 'scale(0.3)'
       }
     }
 
@@ -233,7 +233,7 @@ export default defineComponent({
       state.map = new google.maps.Map(document.getElementById('map') as HTMLElement, {
           center: {lat: 37.869260, lng: -122.254811},
           zoom: 1,
-          fullscreenControl: false,
+          fullscreenControl: true,
           mapTypeControl: false,
           streetViewControl: false,
       })      
@@ -261,10 +261,10 @@ export default defineComponent({
   left: 10px;
   z-index: 3;
   opacity: 0.7;
-  height: 320px;
-  width: 480px;
+  height: 600px;
+  width: 900px;
   transform-origin: bottom left;
-  transform: scale(0.75);
+  transform: scale(0.3);
   transition: transform 0.3s; 
 }
 

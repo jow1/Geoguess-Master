@@ -184,7 +184,9 @@ export default defineComponent({
     }
 
     function selectGivenLocation(randomLatLng: google.maps.LatLng): void {
-      state.selectedLatLng = randomLatLng
+      if (state.selectedLatLng == null) {
+      	state.selectedLatLng = randomLatLng
+      }
       removeMarkers()
       putMarker(state.selectedLatLng!)
       selectLocation()
@@ -281,7 +283,7 @@ export default defineComponent({
       state.map = new google.maps.Map(document.getElementById('map') as HTMLElement, {
           center: {lat: 37.869260, lng: -122.254811},
           zoom: 1,
-          fullscreenControl: false,
+          fullscreenControl: true,
           mapTypeControl: false,
           streetViewControl: false,
       })
